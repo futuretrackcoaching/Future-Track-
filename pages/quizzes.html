@@ -1,0 +1,63 @@
+<section id="page-quizzes" class="page-view flex flex-col gap-6">
+  <div class="border-b-subtle" style="padding-bottom: 12px;">
+    <span class="badge badge-terracotta">Practice Arena</span>
+    <h2 class="serif text-3xl font-bold" style="margin-top: 4px;">Faculty Practice Drills</h2>
+    <p class="text-xs text-muted">Test your concepts on teacher-curated drills. Each quiz displays its verified student leaderboard directly underneath.</p>
+  </div>
+
+  <!-- Filter by Class for Quizzes -->
+  <div class="card flex flex-col gap-3">
+    <label class="text-xs font-bold text-muted uppercase">Filter by Class</label>
+    <div class="flex flex-wrap gap-2" id="quizzesFilterGroup">
+      <button type="button" onclick="window.filterQuizzesByClass('all', this)" class="filter-btn active">All Classes</button>
+      <button type="button" onclick="window.filterQuizzesByClass('12th Commerce', this)" class="filter-btn">12th Commerce</button>
+      <button type="button" onclick="window.filterQuizzesByClass('11th Commerce', this)" class="filter-btn">11th Commerce</button>
+      <button type="button" onclick="window.filterQuizzesByClass('Class 10th', this)" class="filter-btn">Class 10th</button>
+      <button type="button" onclick="window.filterQuizzesByClass('Class 9th', this)" class="filter-btn">Class 9th</button>
+    </div>
+  </div>
+
+  <!-- Quiz Selector & Leaderboards Container -->
+  <div id="quizSelectorView" class="grid grid-cols-1 gap-6"></div>
+
+  <!-- Active Quiz Player -->
+  <div id="quizPlayerView" class="card hidden flex flex-col gap-4">
+    <div class="flex justify-between items-center border-b-subtle" style="padding-bottom: 12px;">
+      <div>
+        <span class="badge badge-navy" id="quizActiveBadge">Class 12th</span>
+        <h3 class="serif text-xl font-bold" id="quizActiveTitle" style="margin-top: 4px;">Title</h3>
+        <p class="text-xs text-muted" id="quizActiveAuthor">Prepared by: Anuj Tyagi Sir</p>
+      </div>
+      <button type="button" onclick="window.exitQuizPlayer()" class="btn btn-outline" style="padding: 6px 14px; font-size: 12px;">Quit Quiz</button>
+    </div>
+
+    <!-- Student Name Input (Pre-filled if already entered) -->
+    <div id="quizStudentInfoBanner" class="card-canvas flex flex-col md-flex-row gap-2 items-center justify-between">
+      <span class="text-xs text-muted">Attempting as:</span>
+      <input type="text" id="quizParticipantName" placeholder="Enter Your Full Name" style="max-width: 260px; padding: 10px 14px; font-size: 13px;">
+    </div>
+
+    <div class="flex justify-between text-xs text-muted">
+      <span id="quizQuestionCounter">Question 1 of 5</span>
+      <span id="quizScoreTracker" class="text-gold font-semibold">1 Mark</span>
+    </div>
+
+    <div class="card-canvas">
+      <h4 class="text-base font-bold text-gold" id="quizQuestionText">Question</h4>
+    </div>
+
+    <div id="quizOptionsContainer" class="flex flex-col gap-2"></div>
+    <button type="button" id="btnNextQuizQuestion" onclick="window.goToNextQuizQuestion()" class="btn btn-navy" disabled>Next Question →</button>
+  </div>
+
+  <!-- Result Modal View -->
+  <div id="quizResultView" class="card hidden text-center" style="max-width: 500px; margin: 20px auto; width: 100%; padding: 36px 20px;">
+    <span class="badge badge-green" style="margin-bottom: 8px;">Completed</span>
+    <h3 class="serif text-2xl font-bold" id="quizFinalTitle">Performance Summary</h3>
+    <div class="serif text-4xl font-bold text-gold" id="quizFinalScore" style="margin: 12px 0;">0 / 0</div>
+    <p class="text-xs text-muted" id="quizFeedbackMessage">Your score has been verified and permanently posted to the leaderboard below.</p>
+    <div class="flex justify-center gap-2" style="margin-top: 16px;">
+      <button type="button" onclick="window.exitQuizPlayer()" class="btn btn-navy">View on Leaderboard</button>
+    </div>
+  </div>
+</section>
