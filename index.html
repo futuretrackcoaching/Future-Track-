@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Future Track Coaching | Mentored by Anuj Tyagi</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- STICKY BLURRED HEADER -->
+  <header class="header-nav">
+    <div class="container flex items-center justify-between" style="padding-top: 14px; padding-bottom: 14px;">
+      
+      <!-- Brand Logo & Title -->
+      <a href="javascript:void(0)" onclick="window.switchPage('home')" id="headerBrand" class="brand-link flex items-center gap-3 header-brand-submerged">
+        <div class="logo-box serif">FT</div>
+        <div>
+          <div class="serif brand-title">FUTURE TRACK</div>
+          <div class="brand-subtitle">Mentored by <strong>Anuj Tyagi</strong></div>
+        </div>
+      </a>
+
+      <!-- Controls Group -->
+      <div class="flex items-center gap-2">
+        <!-- Class Indicator Pill -->
+        <button type="button" onclick="window.openClassPickerModal()" id="headerClassBadge" class="btn btn-outline" style="min-height: 40px; padding: 6px 14px; font-size: 12px; border-radius: 20px;">
+          <span style="color: #C85A17;">●</span> <span id="currentSelectedClassLabel">Select Class</span>
+        </button>
+
+        <!-- Theme Switcher Button -->
+        <button type="button" onclick="window.toggleTheme()" id="themeToggleBtn" class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Light and Dark Mode">
+          <span id="themeToggleIcon">🌙</span>
+        </button>
+
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav flex gap-1">
+          <button onclick="window.switchPage('home')" id="tab-home" class="tab-btn active">Home</button>
+          <button onclick="window.switchPage('materials')" id="tab-materials" class="tab-btn">Materials</button>
+          <button onclick="window.switchPage('results')" id="tab-results" class="tab-btn">Results</button>
+          <button onclick="window.switchPage('tests')" id="tab-tests" class="tab-btn">Tests</button>
+          <button onclick="window.switchPage('quizzes')" id="tab-quizzes" class="tab-btn">Quizzes</button>
+        </nav>
+
+        <!-- High-Visibility 3-Dots Mobile Menu Toggle -->
+        <button type="button" onclick="window.toggleMobileNav()" id="mobileMenuBtn" class="mobile-toggle" aria-label="Open Navigation Menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <circle cx="12" cy="5" r="2.2" />
+            <circle cx="12" cy="12" r="2.2" />
+            <circle cx="12" cy="19" r="2.2" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileNavMenu" class="mobile-dropdown hidden flex flex-col gap-2">
+      <button onclick="window.switchPage('home')" class="btn btn-outline" style="text-align: left; width: 100%;">Home</button>
+      <button onclick="window.switchPage('materials')" class="btn btn-outline" style="text-align: left; width: 100%;">Materials</button>
+      <button onclick="window.switchPage('results')" class="btn btn-outline" style="text-align: left; width: 100%;">Results</button>
+      <button onclick="window.switchPage('tests')" class="btn btn-outline" style="text-align: left; width: 100%;">Tests</button>
+      <button onclick="window.switchPage('quizzes')" class="btn btn-outline" style="text-align: left; width: 100%;">Quizzes</button>
+    </div>
+  </header>
+
+  <!-- DYNAMIC VIEW PORTAL (Pages load inside this container via fetch) -->
+  <main class="container" id="appRoot" style="margin-top: 24px; min-height: 80vh;"></main>
+
+  <!-- FOOTER -->
+  <footer class="page-footer text-center">
+    <div class="container flex flex-col items-center gap-2">
+      <div class="serif font-bold text-navy">FUTURE TRACK COACHING INSTITUTE</div>
+      <p>Mentored with discipline by <strong>Anuj Tyagi Sir</strong> (CS, B.Com, LLB)</p>
+      <p class="text-xs text-muted">Excellence in Commerce & Foundation Academics • New Delhi</p>
+      
+      <!-- Instagram Link -->
+      <a href="https://www.instagram.com/future_track_?dlrf=bjljYWhzOHBvaDk4" target="_blank" class="btn btn-outline" style="margin-top: 8px; padding: 10px 20px; font-size: 13px; border-radius: 20px;">
+        <span style="font-size: 16px;">📸</span> Follow us on Instagram
+      </a>
+    </div>
+  </footer>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toastBox">Notification</div>
+
+  <!-- CLASS SELECTION GATEWAY MODAL -->
+  <div id="classPickerModal" class="modal-overlay hidden">
+    <div class="card flex flex-col gap-4 text-center" style="max-width: 440px; width: 100%; border-radius: 26px; padding: 30px 24px;">
+      <div class="flex flex-col items-center">
+        <div class="logo-box serif" style="margin-bottom: 12px; width: 54px; height: 54px; font-size: 24px;">FT</div>
+        <span class="badge badge-terracotta" style="margin-bottom: 6px;">Welcome to Future Track</span>
+        <h2 class="serif text-2xl font-bold">Select Your Class</h2>
+        <p class="text-xs text-muted" style="margin-top: 4px;">Choose your stream to customize your portal.</p>
+      </div>
+
+      <div class="flex flex-col gap-2" style="margin-top: 10px;">
+        <button type="button" onclick="window.setUserClass('12th Commerce')" class="btn btn-outline flex justify-between items-center" style="width: 100%; padding: 14px 18px;">
+          <span class="font-bold text-navy text-sm">Class 12th Commerce</span>
+        </button>
+        <button type="button" onclick="window.setUserClass('11th Commerce')" class="btn btn-outline flex justify-between items-center" style="width: 100%; padding: 14px 18px;">
+          <span class="font-bold text-navy text-sm">Class 11th Commerce</span>
+        </button>
+        <button type="button" onclick="window.setUserClass('Class 10th')" class="btn btn-outline flex justify-between items-center" style="width: 100%; padding: 14px 18px;">
+          <span class="font-bold text-navy text-sm">Class 10th Foundation</span>
+        </button>
+        <button type="button" onclick="window.setUserClass('Class 9th')" class="btn btn-outline flex justify-between items-center" style="width: 100%; padding: 14px 18px;">
+          <span class="font-bold text-navy text-sm">Class 9th Junior Wing</span>
+        </button>
+        <button type="button" onclick="window.setUserClass('All Classes')" class="btn btn-navy flex justify-center items-center" style="width: 100%; margin-top: 6px; padding: 12px 18px; font-size: 13px;">
+          View All Classes
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="script.js"></script>
+</body>
+</html>
